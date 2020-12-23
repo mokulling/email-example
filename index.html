@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title>Welcome - [Plain HTML]</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+    <!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: Arial, sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,300" rel="stylesheet">
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+    <!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+		
+		h2 {
+			font-family: "Roboto", sans-serif, Arial, Helvetica;
+			font-size: 17px;
+		}
+		img {
+		  max-width: 100%;
+		  height: auto; }
+		  
+
+		.linked-image-container {
+		    max-width: 600px; }
+		.linked-image-container img {
+		      width: 100%; }  
+        /* What it does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for email clients meddling in triggered links. */
+        *[x-apple-data-detectors],  /* iOS */
+        .x-gmail-data-detectors,    /* Gmail */
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+		
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+            display: none !important;
+            opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+            display:none !important;
+           }
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+
+        /* Media Queries */
+        @media screen and (max-width: 480px) {
+
+            /* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+            .fluid {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            /* What it does: Forces table cells into full-width rows. */
+            .stack-column,
+            .stack-column-center {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                direction: ltr !important;
+            }
+            /* And center justify these ones. */
+            .stack-column-center {
+                text-align: center !important;
+            }
+
+            /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+            .center-on-narrow {
+                text-align: center !important;
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                float: none !important;
+            }
+            table.center-on-narrow {
+                display: inline-block !important;
+            }
+.disclosure {
+font-size: 8px!important;
+
+            /* What it does: Adjust typography on small screens to improve readability */
+           } 
+.email-container p {
+    font-size: 18px !important;
+                
+    line-height: 26px !important;
+            }
+            
+        }
+
+    </style>
+
+    <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+
+</head>
+<body width="100%" bgcolor="#F1F1F1" style="margin: 0;">
+<center style="width: 100%; background: #F1F1F1; text-align: left;"><!-- Visually Hidden Preheader Text : BEGIN -->
+<div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;  font-family: sans-serif;"></div>
+<!-- Visually Hidden Preheader Text : END --> <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 680px.
+            2. MSO tags for Desktop Windows Outlook enforce a 680px width.
+            Note: The Fluid and Responsive templates have a different width (600px). The hybrid grid is more "fragile", and I've found that 680px is a good width. Change with caution.
+        -->
+<div class="email-container" style="max-width: 600px; margin: auto;">
+<table class="email-container" style="max-width: 600px;" role="presentation" border="0" width="100%" cellspacing="0" cellpadding="0" align="center"><!-- HEADER : BEGIN -->
+<tbody>
+<tr>
+<td bgcolor="#fbfbfb">
+<table role="presentation" border="0" width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="padding: 8px 20px 8px 20px; border-bottom: 0.5px solid #e6e7e8;"><a href="{{ Unsubscribe URL }}" style="color: #000000; font-size: 10px; text-decoration: none; float: right; border-bottom: 1px;"> Unsubscribe</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td bgcolor="#FBFBFB">
+<table style="height: 36px; width: 100%;" role="presentation" border="0" width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr style="height: 36px;">
+<td style="padding: 40px 40px; height: 36px;"><a href="https://app.pangeamoneytransfer.com/en/"> <img style="height: auto; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #ffffff;" src="https://pangeamoneytransfer.com/images/logo/pangea-logo-blue.png" alt="Pangea Money Transfer" width="120" height="32" border="0" /></a></td>
+<td class="button-td" style="border-radius: 1px; background: #FBFBFB; text-align: center; max-width: 40%;">
+<h2 class="cta" style="border: 2px solid #ff3b80; color: white; font-size: 20px; font-weight: bold; padding: 5px; margin-right: 5px; text-align: center; border-radius: 4px; float: right;"><font size="3"><a href="https://app.pangeamoneytransfer.com/pangea-card/deposit-from-bank" style="text-decoration: none; color: #ff3b80;">&iquest;Hablas Espa&ntilde;ol?</a></font></h2>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td bgcolor="#ffffff">
+<h1 style="margin: 0; font-family: 'Roboto', sans-serif; font-size: 30px; line-height: 43px; color: #333333; font-weight: bold; text-align: center;">Say goodbye to</h1>
+</td>
+</tr>
+<!-- HEADER : END --> <!-- HERO : BEGIN -->
+<tr><!-- Bulletproof Background Images c/o https://backgrounds.cm -->
+<td style="text-align: center; background-position: center center !important; background-size: cover !important;" align="center" valign="top" bgcolor="#ffffff">
+<div style="padding-bottom: 0px;">
+<div class="linked-image-container" style="padding-bottom: 0px;"><a href="https://pangeamoneytransfer.com/pangea-card/" target="_blank" rel="noopener"><img src="https://assets.prod.leanplum.com/app_EFDdmJr9Xrx3uRqaqBZ5DAhfaJ4mOm5sPLCzObbgeAw/c2F5LWdvb2RieWUtZW1haWwtZW4gKDEpLmdpZg==" alt="pg-email-01" width="600px" height="350px" /></a></div>
+</div>
+</td>
+</tr>
+<!-- HERO : END --> <!-- INTRO : BEGIN -->
+<tr>
+<td bgcolor="#ffffff">
+<table role="presentation" border="0" width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="padding: 40px 40px 20px 40px; text-align: center;">
+<h1 style="margin: 0; font-family: 'Roboto', sans-serif; font-size: 30px; line-height: 43px; color: #333333; font-weight: bold;">The Pangea Card is here</h1>
+</td>
+</tr>
+<tr>
+<td style="padding: 0px 30px 20px 30px; font-family: sans-serif; font-size: 18px; line-height: 1.5em; color: #444444; text-align: left;">
+<p align="center"><span style="font-weight: 400;">Discover why the Pangea Visa<sup style="font-size: 10px;">&reg;</sup> Debit Card is better than other debit cards.<sup style="font-size: 10px;">1</sup></span></p>
+<table class="center-on-narrow" style="height: 176px;" role="presentation" border="0" width="199" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+<tr>
+<td class="button-td" style="border-radius: 50px; background: #ffffff; text-align: center; width: 199px;">
+<h2 class="cta" style="background-color: #ff3b80; padding: 12px 18px; color: white; font-size: 20px; text-align: center; display: inline-block; border-radius: 4px; width: auto;"><a href="https://pangeamoneytransfer.com/pangea-card/" style="text-decoration: none; color: #ffffff;" target="_blank" rel="noopener">GET STARTED</a></h2>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p align="center"><a href="https://pangeamoneytransfer.com/pangea-card/" target="_blank" rel="noopener"><img src="https://assets.prod.leanplum.com/app_EFDdmJr9Xrx3uRqaqBZ5DAhfaJ4mOm5sPLCzObbgeAw/Y2FyZC13YWl0bGlzdC00ICgxKS5wbmc=" alt="pg-email-01" width="300px" height="auto" /></a></p>
+
+<p align="center"><strong>Say goodbye to minimum, monthly, or overdraft fees</strong><sup style="font-size: 10px;">2</sup></p>
+
+<p align="center"><span style="font-weight: 400;">With the Pangea Card, what you see is what you get. It has no hidden fees, no minimum balance, and no overdraft penalties, so you can spend your hard-earned money on the things that matter most.</span></p>
+
+<p align="left">&nbsp;</p>
+
+<p align="center"><a href="https://pangeamoneytransfer.com/pangea-card/" target="_blank" rel="noopener"><img src="https://assets.prod.leanplum.com/app_EFDdmJr9Xrx3uRqaqBZ5DAhfaJ4mOm5sPLCzObbgeAw/c3QtMi5wbmc=" alt="pg-email-01" /></a></p>
+
+<p align="center"><strong>Free money transfers to Mexico</strong><sup style="font-size: 10px;"><span style="font-weight: 400;">3</span></sup></p>
+
+<p align="center"><span style="font-weight: 400;">S</span><span style="font-weight: 400;">et up a paycheck direct deposit of $500 or more and get two free international money transfers or bill payments each month.</span></p>
+
+
+<table class="center-on-narrow" style="height: 176px;" role="presentation" border="0" width="199" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+<tr>
+<td class="button-td" style="border-radius: 50px; background: #ffffff; text-align: center; width: 199px;">
+<h2 class="cta" style="background-color: #ff3b80; padding: 12px 18px; color: white; font-size: 20px; text-align: center; display: inline-block; border-radius: 4px;"><a href="https://pangeamoneytransfer.com/pangea-card/" style="text-decoration: none; color: #ffffff;" target="_blank" rel="noopener">APPLY NOW</a></h2>
+</td>
+</tr>
+<tr>
+<td style="padding: 0px 30px 20px; font-family: sans-serif; font-size: 18px; line-height: 1.5em; color: #444444; text-align: left; width: 139px;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p align="center"><a href="https://pangeamoneytransfer.com/pangea-card/" target="_blank" rel="noopener"><img src="https://assets.prod.leanplum.com/app_EFDdmJr9Xrx3uRqaqBZ5DAhfaJ4mOm5sPLCzObbgeAw/c3QzLnBuZw==" alt="pg-email-01" /></a></p>
+
+<p align="center"><span style="font-weight: 400;"><strong>Add or spend money almost anywhere</strong><sup style="font-size: 10px;">4</sup></span></p>
+
+<p align="center"><span style="font-weight: 400;">Load cash at over 88,000 participating retailers or withdraw it from one of 19,000 ATMs in our network.</span></p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center"><a href="https://pangeamoneytransfer.com/pangea-card/" target="_blank" rel="noopener"><img src="https://assets.prod.leanplum.com/app_EFDdmJr9Xrx3uRqaqBZ5DAhfaJ4mOm5sPLCzObbgeAw/c3Q0LnBuZw==" alt="pg-email-01" /></a></p>
+<p align="center">&nbsp;</p>
+<p align="center"><span style="font-weight: 400;"><strong>Get your pay up to two days early</strong><sup style="font-size: 10px;">5</sup> </span></p>
+<p align="center"><span style="font-weight: 400;">Don’t wait for your own money! Set up paycheck direct deposit and get access to your paycheck up to two days early. The faster you get paid, the faster you can send money to loved ones!
+</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: center; padding: 0px 20px 40px 20px;" valign="left">   
+        <table class="center-on-narrow" style="height: 176px;" role="presentation" border="0" width="199" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+<tr>
+<td class="button-td" style="border-radius: 50px; background: #ffffff; text-align: center; width: 199px;">
+<h2 class="cta" style="background-color: #ff3b80; padding: 12px 18px; color: white; font-size: 20px; text-align: center; display: inline-block; border-radius: 4px;"><a href="https://pangeamoneytransfer.com/pangea-card/" style="text-decoration: none; color: #ffffff;" target="_blank" rel="noopener">SIGN UP NOW!</a></h2>
+</td>
+</tr>
+<tr>
+<td style="padding: 0px 30px 20px; font-family: sans-serif; font-size: 18px; line-height: 1.5em; color: #444444; text-align: left; width: 139px;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td bgcolor="#000000">
+<table role="presentation" border="0" width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="padding: 40px 40px 5px 40px; text-align: center;">
+<h2><a style="color: #00abc7; text-decoration: none;" href="https://app.gopangea.com">Send Money Now</a></h2>
+</td>
+</tr>
+<tr>
+<td style="padding: 0px 40px 20px 40px; color: #aad4ea; text-align: center;">
+<h2><a style="color: white; text-decoration: none;" href="https://gopangea.com/help">Get Help</a></h2>
+<p>&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<!-- CTA : END --> <!-- SOCIAL : BEGIN -->
+<tr>
+<td bgcolor="#191a1b">
+<table role="presentation" border="0" width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="padding: 30px 30px; text-align: center;">
+<table style="text-align: center;" align="center">
+<tbody>
+<tr>
+<td><a href="https://www.facebook.com/PangeaMoneyTransfer" style="padding-left: 0;"><img class="icon" style="margin: 0; padding: 0; border: none; display: block;" src="https://lh3.googleusercontent.com/wRZL6fYInrz_Km52cBAUvn6IRj2b9NSJToycVlQWPwkWFfk4Qz6pQ3DBWXdqTDno3r06lzvP3UgdI7gZ3O0=s200-c" alt="Facebook" width="45" height="45" border="0" /></a></td>
+<td width="10">&nbsp;</td>
+<td><a href="https://twitter.com/GoPangea" style="padding-left: 0;"><img class="icon" style="margin: 0; padding: 0; border: none; display: block;" src="https://lh3.googleusercontent.com/i-Ff_VKiT0Tblok2s4YO0OXjuMqmuxeUtL206eaBLoVYk2LaNoN3X5-YhXLHXVEC5kZqAV1KAqUzKKVeegI=s200-c" alt="Twitter" width="45" height="45" border="0" /></a></td>
+<td width="10">&nbsp;</td>
+<td><a href="https://www.instagram.com/gopangea/" style="padding-left: 0;"><img class="icon" style="margin: 0; padding: 0; border: none; display: block;" src="https://lh3.googleusercontent.com/GvRADdpIhLlVO0fEY7R9DxU7-YykSw4k8Y-4oe2C-CrX8NStve-rQqyrnlelk1E1ADRGfkIzYoosQFsOyG8=s200-c" alt="Instagram" width="45" height="45" border="0" /></a></td>
+<td width="10">&nbsp;</td>
+<td><a href="https://www.youtube.com/channel/UCWTTQ3jWIjgSte5d_x07pUg" style="padding-left: 0;"><img class="icon" style="margin: 0; padding: 0; border: none; display: block;" src="https://lh3.googleusercontent.com/PkYah1Xxv3VkGOV2VebYKKnWhColggP2G8hzAAKOZVMXeCWs0W3SCeH22b7ttEgZ-T0564OA8rarkdp0YLw=s200-c" alt="YouTube" width="45" height="45" border="0" /></a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<!-- SOCIAL : END --> <!-- FOOTER : BEGIN -->
+<tr>
+<td bgcolor="#ffffff"><a href="https://app.pangeamoneytransfer.com/en/"><img src="https://assets.prod.leanplum.com/app_EFDdmJr9Xrx3uRqaqBZ5DAhfaJ4mOm5sPLCzObbgeAw/Zm9vdGVyLWVtYWlsLXJhdGluZ3MtZW4uanBn" alt="app_ratings_en1" width="600px" height="317px" /></a></td>
+</tr>
+<!-- SOCIAL : END --> <!-- FOOTER : BEGIN -->
+<tr>
+<td bgcolor="#ffffff">
+<table role="presentation" border="0" width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="padding: 20px 40px 20px 40px; font-family: sans-serif; font-size: 9px; line-height: 18px; color: #666666; text-align: left; font-weight: normal;">
+<p><sup>1</sup>Pangea Visa<sup>Ⓡ</sup> Debit Card account opening is subject to identity verification by Green Dot Bank.</p>
+<p><sup>2</sup>Other fees, like out-of-network ATM fees, may apply. See Deposit Account Agreement for fees, limits, and exclusions.</p>
+<p><sup>3</sup>Offer applies when user successfully starts recurring payroll direct deposits for $500 or more. This promotion is not sponsored or endorsed by Green Dot Bank. See terms for details.</p>
+<p><sup>4</sup>ATM withdrawals and balance inquiries are free at over 19,000 Allpoint ATMs at in-network participating retailers. Outside of our ATM network, it&rsquo;s just $2.50 for withdrawals and $0.50 for balance inquiries, plus any ATM owner fees. Cash deposit fees and limits may apply.</p>
+<p><sup>5</sup>Early availability depends on timing of payor&rsquo;s payment instructions and fraud prevention restrictions may apply. As such, the availability or timing of early direct deposit may vary from pay period to pay period.</p>
+<p><sup>6</sup>International money transmission services are offered by Pangea USA, LLC, not Green Dot Bank.</p>
+<p>Debit card issued and debit account services provided by Green Dot Bank, Member FDIC, pursuant to a license from Visa USA, Inc. Visa is a registered trademark of Visa International Service Association. Green Dot is a registered trademark of Green Dot Corporation. Green Dot Bank operates under the following registered trade names: GoBank, Green Dot Bank and Bonneville Bank. All of the registered trade names are used by, and refer to a single FDIC-insured bank, Green Dot Bank. Deposits under any of these trade names are deposits with Green Dot Bank and are aggregated for deposit insurance coverage. ©2020 Green Dot Corporation. All rights reserved.
+</p>
+<p style="margin: 0;">Click <a href="{{ Unsubscribe URL }}">Unsubscribe</a> if you no longer wish to receive these emails. Pangea USA, LLC PO Box 3740 Chicago, IL, 60654. All rights reserved. All other logos, trademarks, service marks, and trade names referenced in this material are the property of their respective owners.</p>
+<p>&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<!-- FOOTER : END --></tbody>
+</table>
+<!-- Email Body : END --> <!-- [if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]--></div>
+</center>
+<div id="_two50">&nbsp;</div>
+<p><img id="_two50_img" style="margin: 0 !important; padding: 0 !important; border: 0 !important; height: 1px !important; width: 1px !important;" src="http://analytics.pangeamoneytransfer.com/ea/OiDUJpzPVm/?e=Email" width="1" height="1" /></p>
+</body>
+</html>
